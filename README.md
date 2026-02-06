@@ -1,4 +1,4 @@
-## AI Research
+## Deep Learning(Neural Networks)
 It's the starting of Neural networks
 
 **Name:** Md. Rownak Mridha Mahi 
