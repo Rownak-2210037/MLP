@@ -1,5 +1,5 @@
 ## 1.Multilayer Perceptron (MLP) - Complete Guide
-#### What is an MLP?
+### What is an MLP?
 MLP = Multi-Layer PerceptronIt is a type of Artificial Neural Network (ANN)
 "Multi-layer" → has one or more hidden layers between input and output
 Each layer contains neurons (also called nodes or units)
@@ -7,7 +7,7 @@ Neurons perform two operations:
 
 Take weighted sum of inputs + bias → Z
 Apply activation function → A
-#### 2️⃣ Structure of an MLP
+### 2️⃣ Structure of an MLP
 Input layer → Hidden layer(s) → Output layer
 Layer Breakdown:
 Input layer: Your features/input data
@@ -16,71 +16,54 @@ Hidden layer(s): Neurons that learn patterns and representations
 
 Output layer: Final prediction/classification
 
-#### Example Architecture:
+### Example Architecture:
 Input: 4 features → n₀ = 4
 Hidden layer: 3 neurons → n₁ = 3
 Output: 2 classes → n₂ = 2
-#### 3️⃣ Forward Propagation (Step by Step)
-Forward Propagation in MLP (Simple Explanation)
+### 3️⃣ Forward Propagation 
+Forward Propagation in MLP 
 What is Forward Propagation?
 It's the process where input data flows through the neural network layer by layer to produce an output.
-
-The 3-Step Process:
+#### The 3-Step Process:
 1. Input Layer → Hidden Layer
-text
 Hidden Neuron Value = Activation( (Input1 × Weight1) + (Input2 × Weight2) + Bias )
 Each connection has a weight (strength)
-
 Add a bias (adjustment term)
-
 Apply activation function (like ReLU, Sigmoid) to add non-linearity
 
-2. Hidden Layer → Output Layer
-text
+#### 2. Hidden Layer → Output Layer
 Output = Activation( (Hidden1 × Weight1) + (Hidden2 × Weight2) + Bias )
 Same process repeats
 
 Different weights and biases
 
-3. Get Final Output
+#### 3. Get Final Output
 For regression: Often linear activation
 
 For classification: Softmax for probabilities
 
-Visual Flow:
+#### Visual Flow:
 
 Input → Multiply by Weights → Add Bias → Apply Activation → Repeat → Final Output
           (Layer 1)                         (Layer 2)             (Output)
-Key Points:
+
 Weights & Biases: Learned during training
-
 Activation Functions: Make network non-linear (can learn complex patterns)
-
 Forward Pass: Just calculation, no learning yet
-
-Learning happens during backpropagation (next step)
-
-Simple Code Snippet:
-python
-# One layer forward propagation
+Learning happens during backpropagation
+#### Simple Code Snippet:
+One layer forward propagation
 def forward_layer(inputs, weights, bias, activation):
     z = np.dot(inputs, weights) + bias  # Linear transformation
     return activation(z)  # Non-linear activation
 #### 5️⃣ Activation Functions (Basics)
 Function	Formula	Common Use
-ReLU	f(z) = max(0, z)	Hidden layers
-Sigmoid	f(z) = 1/(1 + e^{-z})	Binary classification output
-Tanh	f(z) = (e^z - e^{-z})/(e^z + e^{-z})	Hidden layers
-Softmax	f(z_i) = e^{z_i}/Σ e^{z_j}	Multi-class output
+**ReLU**	f(z) = max(0, z)	Hidden layers
+**Sigmoid** f(z) = \frac{1}{1 + e^{-z}}	Binary classification output
+**Tanh**	f(z) = (e^z - e^{-z})/(e^z + e^{-z})	Hidden layers
+**Softmax**	f(z_i) = e^{z_i}/Σ e^{z_j}	Multi-class output
 #### 6️⃣ Loss Functions
-Task	Loss Function
-Binary Classification	Binary Cross-Entropy
-Multi-class Classification	Categorical Cross-Entropy
-Regression	Mean Squared Error (MSE)
-Binary Cross-Entropy Formula:
 
-math
-L = -\frac{1}{m} \sum_{i=1}^m [y_i \log(\hat{y}_i) + (1-y_i) \log(1-\hat{y}_i)]
 #### 7️⃣ Training MLP → Backpropagation
 Training Loop:
 text
