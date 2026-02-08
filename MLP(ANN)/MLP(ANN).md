@@ -117,7 +117,7 @@ Proper weight initialization and regularization are crucial
 
 MLPs form the foundation for more complex architectures (CNNs, RNNs)
 
-### 1.Code(Forward Propagation)
+### 1.Code(Forward Propagation using numpy)
 ```
 #Forward Code
 import numpy as np
@@ -172,5 +172,47 @@ print(f"Sample prediction: {predictions[0, 1]:.4f}")
 **Predictions shape: (1, 5)**
 
 **Sample prediction: 0.5012**
+
+### Code(Forward with pytorch)
+```
+#forward with pytorch
+import torch
+import torch.nn as nn
+
+# Sample input
+X = torch.randn(5, 3)       # 5 samples, 3 features
+Y = torch.tensor([[1,0,1,0,1]]).float().T  # shape (5,1)
+
+# Define MLP
+model = nn.Sequential(
+    nn.Linear(3, 4),   # input 3 features → hidden 4 neurons
+    nn.Sigmoid(),
+    nn.Linear(4, 1),   # hidden 4 neurons → output 1 neuron
+    nn.Sigmoid()
+)
+
+# Forward pass
+predictions = model(X)  # shape (5,1)
+print("Predictions:\n", predictions)
+print("Predictions shape:", predictions.shape)
+
+```
+### Output:
+**Predictions:
+ tensor([[0.5491],
+        [0.5146],
+        [0.5188],
+        [0.5401],
+        [0.5292]], grad_fn=<SigmoidBackward0>)
+Predictions shape: torch.Size([5, 1])**
+
+#### --->Note:
+**3️⃣ About “Z1 = W1·X + b1” vs “X·W1 + b1”
+NumPy convention: usually Z1 = W1·X + b1
+W1 shape = (hidden, input)
+X shape = (input, samples)
+PyTorch convention: Z1 = X·W1^T + b1 automatically handled by nn.Linear
+X shape = (samples, features)
+nn.Linear(features_in, features_out) → PyTorch transposes weights internally**
 
 
