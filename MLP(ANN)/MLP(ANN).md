@@ -198,21 +198,28 @@ print("Predictions shape:", predictions.shape)
 
 ```
 ### Output:
-**Predictions:
- tensor([[0.5491],
+**Predictions:**
+ **tensor([[0.5491],
         [0.5146],
         [0.5188],
         [0.5401],
-        [0.5292]], grad_fn=<SigmoidBackward0>)
-Predictions shape: torch.Size([5, 1])**
+        [0.5292]], grad_fn=<SigmoidBackward0>)**
+        
+**Predictions shape: torch.Size([5, 1])**
 
 #### --->Note:
-**3️⃣ About “Z1 = W1·X + b1” vs “X·W1 + b1”
-NumPy convention: usually Z1 = W1·X + b1
-W1 shape = (hidden, input)
-X shape = (input, samples)
-PyTorch convention: Z1 = X·W1^T + b1 automatically handled by nn.Linear
-X shape = (samples, features)
-nn.Linear(features_in, features_out) → PyTorch transposes weights internally**
+**About “Z1 = W1·X + b1” vs “X·W1 + b1”**
+
+**NumPy convention: usually Z1 = W1·X + b1**
+
+**W1 shape = (hidden, input)**
+
+**X shape = (input, samples)**
+
+**PyTorch convention: Z1 = X·W1^T + b1 automatically handled by nn.Linear**
+
+**X shape = (samples, features)**
+
+**nn.Linear(features_in, features_out) → PyTorch transposes weights internally**
 
 
