@@ -330,3 +330,94 @@ Repeated many times → learning
 This is how an MLP learns from data.
 
 
+
+### 2.Code(Bacjward Propagation using numpy)
+```
+#Backward with numpy
+import numpy as np
+
+# Activation function
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+# Derivative of sigmoid (for backprop)
+def sigmoid_derivative(a):
+    return a * (1 - a)
+
+# Forward propagation
+def forward_propagation(X, W1, b1, W2, b2):
+    Z1 = np.dot(W1, X) + b1
+    A1 = sigmoid(Z1)
+    Z2 = np.dot(W2, A1) + b2
+    A2 = sigmoid(Z2)
+    cache={
+          "Z1":Z1,
+          "A1":A1,
+          "Z2":Z2,
+          "A2":A2
+          }
+    
+    return A2, cache
+
+# Backward propagation
+def backward_propagation(X, Y, cache, W2):
+    m = X.shape[1]  # number of samples
+
+    A1 = cache["A1"]
+    A2 = cache["A2"]
+
+    # Output layer error
+    dZ2 = A2 - Y           # For binary cross-entropy with sigmoid
+    dW2 = (1/m) * np.dot(dZ2, A1.T)
+    db2 = (1/m) * np.sum(dZ2, axis=1, keepdims=True)
+
+    # Hidden layer error
+    dZ1 = np.dot(W2.T, dZ2) * sigmoid_derivative(A1)
+    dW1 = (1/m) * np.dot(dZ1, X.T)
+    db1 = (1/m) * np.sum(dZ1, axis=1, keepdims=True)
+
+    grads = {"dW1": dW1, "db1": db1,
+             "dW2": dW2, "db2": db2}
+
+    return grads
+
+# Update parameters
+def update_parameters(W1, b1, W2, b2, grads, lr=0.1):
+    W1 -= lr * grads["dW1"]
+    b1 -= lr * grads["db1"]
+    W2 -= lr * grads["dW2"]
+    b2 -= lr * grads["db2"]
+    return W1, b1, W2, b2
+
+# Example usage
+n_features = 3
+n_hidden = 4
+n_output = 1
+m_samples = 5
+
+# Initialize
+np.random.seed(1)
+W1 = np.random.randn(n_hidden, n_features) * 0.01
+b1 = np.zeros((n_hidden, 1))
+W2 = np.random.randn(n_output, n_hidden) * 0.01
+b2 = np.zeros((n_output, 1))
+
+X = np.random.randn(n_features, m_samples)
+Y = np.array([[1, 0, 1, 0, 1]])  # sample labels
+
+# Forward pass
+A2, cache = forward_propagation(X, W1, b1, W2, b2)
+
+# Backward pass
+grads = backward_propagation(X, Y, cache, W2)
+
+# Update parameters
+W1, b1, W2, b2 = update_parameters(W1, b1, W2, b2, grads, lr=0.1)
+
+print("Updated W1:\n", W1)
+print("Updated W2:\n", W2)
+print("Sample predictions:\n", A2)
+```
+### Output:
+
+
