@@ -331,7 +331,7 @@ This is how an MLP learns from data.
 
 
 
-### 2.Code(Bacjward Propagation using numpy)
+### 2.Code(Backward Propagation using numpy)
 ```
 #Backward with numpy
 import numpy as np
