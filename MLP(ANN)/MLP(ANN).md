@@ -268,7 +268,7 @@ A = activation output
 
 σ = activation function (Sigmoid)
 
-5. Loss Function (Binary Classification)
+#### 10.5. Loss Function (Binary Classification)
 Loss = -[ y log(A2) + (1 - y) log(1 - A2) ]
 
 This measures how wrong the prediction is.
