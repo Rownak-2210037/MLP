@@ -419,5 +419,6 @@ print("Updated W2:\n", W2)
 print("Sample predictions:\n", A2)
 ```
 ### Output:
+![image]("C:\Users\Rownak\Pictures\Screenshots\Screenshot 2026-02-10 020951.png")
 
 
