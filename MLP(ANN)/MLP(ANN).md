@@ -419,7 +419,7 @@ print("Updated W2:\n", W2)
 print("Sample predictions:\n", A2)
 ```
 ### Output:
-![image](https://github.com/Rownak-2210037/deepLearing/blob/main/Screenshot%202026-02-10%20020951.png)
+
 ![Screenshot 2026-02-10 020951](https://github.com/user-attachments/assets/e2f51c11-cf4a-4433-8422-bc022d091c63)
 
 
